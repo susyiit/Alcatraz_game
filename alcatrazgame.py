@@ -2,7 +2,6 @@
 import random
 import json
 
-
 ART_TITLE= r"""                    
          ALCATRAZ  /__\         
        ____________|  |        
@@ -101,7 +100,7 @@ ART_POT= r"""⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣤⣤⣤⣤⣤⣤⡄⠀⠀⠀�
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠷⣦⣴⠾⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"""
 
-#           weapons
+#             weapons
 
 class weapon:
     def __init__(self,dmg,weapon_range,art):
@@ -129,7 +128,6 @@ class sword(weapon):
         
     def showart(self):
         super().showart()
-
 
     def block(self):
         pass
@@ -193,15 +191,15 @@ class wand(weapon):
     def decreasemana(self,a):
         self.manapower -= a
 
-#          ENEMİES
+################ENEMİES#############
 
 class enemy:
     def __init__(self,hp,dmg,name,erange,art):
-        self.name = name
-        self.hp = hp
-        self.dmg = dmg
+        self.name   = name
+        self.hp     = hp
+        self.dmg    = dmg
         self.erange = erange
-        self.art= art
+        self.art    = art
     
     def hit(self):
         return self.dmg
@@ -288,25 +286,26 @@ class arch(enemy):
     def showart(self):
         super().showart()
 
-#saving sytem 
+#                saving sytem
+
 def save():
     global playerhp , playerweapon , enemydistance , ne1 , roomtype
     global newwp
 
     if ne1 == None:
         enemydistance = 0
-        ne1hp = 0
-        ne1dmg = 0
-        ne1name = "none"
-        ne1erange= 0
-        ne1art ="0"
-        ne1extra = 0
+        ne1hp         = 0
+        ne1dmg        = 0
+        ne1name       = "none"
+        ne1erange     = 0
+        ne1art        = "0"
+        ne1extra      = 0
     else:
-        ne1hp = ne1.hp
-        ne1dmg=ne1.dmg
-        ne1name=ne1.name
-        ne1erange= ne1.erange
-        ne1art = ne1.art
+        ne1hp     = ne1.hp
+        ne1dmg    = ne1.dmg
+        ne1name   = ne1.name
+        ne1erange = ne1.erange
+        ne1art    = ne1.art
 
         if ne1.sayname() == "armored troll":
             ne1extra = ne1.armor
@@ -315,19 +314,17 @@ def save():
         else:
             ne1extra = 0
 
-
-
     if newwp == None:
-        newwptype = 0
-        newwpdmg = 0
+        newwptype         = 0
+        newwpdmg          = 0
         newwpweapon_range = 0
-        newwpart = 0
-        newwpexx = 0
+        newwpart          = 0
+        newwpexx          = 0
     else:
-        newwptype= newwp.saytype()
-        newwpdmg = newwp.dmg
+        newwptype         = newwp.saytype()
+        newwpdmg          = newwp.dmg
         newwpweapon_range = newwp.weapon_range
-        newwpart = newwp.art
+        newwpart          = newwp.art
 
         if newwp.saytype()=="wand":
             newwpexx = newwp.manapower
@@ -364,8 +361,6 @@ def save():
           ne1extra,
           newwpexx
           ]
-    
-
     
     try:
         with open("dungeonsave.txt","w") as file:
@@ -426,7 +421,7 @@ def load():
         print("load eror..")
         playerweapon = weapon(1,1,0)
 
-#   rooms
+#               rooms
 def start():
     global playerweapon
    
@@ -613,13 +608,17 @@ def treasureroom():
             return a
         
 
-# ROOM SELECTOR
+#             ROOM SELECTOR
+
+
 while True:
     playerhp = 20
     playerweapon = None
     enemydistance = 10
     roomtype = "start"
     newwp = None
+    ne1 = None
+    
     if start() == 0:
         break
     while True:
@@ -650,6 +649,8 @@ while True:
     else:
         break
 
-        
+    
+            
 
 
+    
