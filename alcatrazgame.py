@@ -415,7 +415,9 @@ def load():
         
         
         if roomtype == "war":
-            warroom(ne1hp,ne1dmg,ne1name,ne1erange,ne1exxtr,ne1art)
+            if warroom(ne1hp,ne1dmg,ne1name,ne1erange,ne1exxtr,ne1art) == 0:
+                return 0
+
         elif roomtype == "treasure1":
             tr1()
         elif roomtype == "treasure2":
@@ -443,7 +445,8 @@ def start():
     elif firstchoice == "3":
         playerweapon = wand(4,10,20,ART_WAND)
     elif firstchoice == "4":
-        load()
+        if load() == 0:
+            return 0
     else:
         print("\nyou choose fists???")
         playerweapon = weapon(1,1,0)
@@ -617,7 +620,8 @@ while True:
     enemydistance = 10
     roomtype = "start"
     newwp = None
-    start()
+    if start() == 0:
+        break
     while True:
         nr = random.randint(1,10)
         if nr > 4:
